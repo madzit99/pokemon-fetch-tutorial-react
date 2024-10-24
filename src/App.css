@@ -41,3 +41,26 @@ body {
 .pokemon-details {
   margin-top: 10px;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.last-button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #b92929;
+  color: white;
+}
+
+.next-button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #91843e;
+  color: white;
+}

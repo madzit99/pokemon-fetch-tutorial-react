@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
-const PokemonCard = ( {name, url}) => {
+const PokemonCard = ({ name, url }) => {
   const [pokemonData, setPokemonData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url);
-        setPokemonData(response.data);
+        const response = await fetch(url);
+        if (!response.ok) {
+          return console.log("Сетевая ошибка!") 
+        }
+        const data = await response.json();
+        setPokemonData(data);
       } catch (error) {
-        console.log("Ошибка при получении данных:", error);
+       return console.log("Ошибка при получении данных:", error);
       }
     };
     fetchData();

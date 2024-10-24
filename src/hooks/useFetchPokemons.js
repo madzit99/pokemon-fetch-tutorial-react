@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const useFetchPokemons = (url) => {
   const [data, setData] = useState([]);
@@ -10,15 +9,17 @@ const useFetchPokemons = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(url);
-        setData(response.data.results);
-        setLoading(false);
+        const response = await fetch(url);
+        if (!response.ok) {
+          return console.log("Ошибка от сервера");
+        }
+        const data = await response.json();
+        setData(data.results);
       } catch (error) {
-        setError(error);
         setLoading(false);
+        return setError(error);
       }
     };
-
     fetchData();
   }, [url]);
 
